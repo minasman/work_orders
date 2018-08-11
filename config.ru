@@ -6,4 +6,6 @@ end
 
 use Rack::MethodOverride
 use UserController
+use WorkorderController
+use StoreController
 run ApplicationController
