@@ -40,8 +40,9 @@ ActiveRecord::Schema.define(version: 20180811142855) do
     t.time    "time"
     t.string  "issue"
     t.integer "user_id"
-    t.integer "current_update_id"
     t.string  "status"
+    t.string  "closed_by"
+    t.string  "closed_notes"
   end
 
 end

@@ -21,6 +21,7 @@ class WorkorderController < ApplicationController
         if Helpers.is_logged_in?(session)  
             workorder = Workorder.create(params[:workorder])
             workorder.user_id = session[:user_id]
+            workorder.status = "open"
             workorder.save
             binding.pry
             redirect to '/workorders'
@@ -39,9 +40,13 @@ class WorkorderController < ApplicationController
     end
 
     get '/workorders/:id/edit' do  
-        if Helpers.is_logged_in?(session)    
-            @workorder = Workorder.find_by_id(params[:id])
-            erb :'/workorders/edit'
+        if Helpers.is_logged_in?(session)
+            if session[:user_id] ==  Workorder.find_by_id(params[:id]).user_id 
+                @workorder = Workorder.find_by_id(params[:id])
+                erb :'/workorders/edit'
+            else
+                redirect to '/workorders'
+            end
         else
             redirect to '/'
         end
@@ -73,11 +78,24 @@ class WorkorderController < ApplicationController
             current_update.workorder_id = workorder.id
             current_update.username = User.find_by_id(session[:user_id]).username
             current_update.save
-            binding.pry
+            workorder.current_updates << current_update
+            redirect to '/workorders'
         else 
             redirect to '/'
         end
+    end
 
+    get '/workorders/:id/close' do   
+        if Helpers.is_logged_in?(session) 
+            workorder = Workorder.find_by_id(params[:id])
+            workorder.status = "closed"
+            workorder.closed_notes = params[:closed_notes]
+            workorder.closed_by = User.find_by_id(session[:user_id]).username 
+            workorder.save
+            redirect to '/workorders'
+        else
+            redirect'/'
+        end
     end
 
 end

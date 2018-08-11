@@ -1,8 +1,9 @@
 <h2><%= @workorder.store_number %></h2>
-<p>Submitted on: <%= @workorder.date %> By: <%= @workorder.user[:username] %> At: <%= @workorder.time %></p> 
+<p>Submitted on: <%= @workorder.date.strftime("%m/%d/%Y") %> By: <%= @workorder.user[:username] %> At: <%= @workorder.time.strftime("%I:%M %p") %></p> 
 <p>Issue: <%= @workorder.issue %>
 <br><br>
 
 <a href="/workorders/<%= @workorder.id %>/edit">Edit Work Order</a><br>
 <a href="/workorders/<%= @workorder.id %>/update">Update Work Order</a><br>
+<a href="/workorders/<%= @workorder.id %>/close">Close Work Order</a><br>
 <a href="/workorders">See All Workorders</a><br>
