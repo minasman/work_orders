@@ -1,9 +1,7 @@
 require_relative './concerns/slugifiable.rb'
 
-class Workorder < ActiveRecord::Base 
-    belongs_to :store
-    belongs_to :user
-    has_many :updates
+class CurrentUpdate < ActiveRecord::Base 
+    belongs_to :workorder
     include Slugifiable::InstanceMethods
     extend Slugifiable::ClassMethods
 end

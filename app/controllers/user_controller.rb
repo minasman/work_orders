@@ -5,15 +5,9 @@ class UserController < ApplicationController
     end
 
     post '/signup' do   
-        #see all workorders
-        #add work orders
-        #edit work orders
-        #see list of stores
-
         @user = User.create(params[:user])
         session[:user_id] = @user.id 
         redirect to '/workorders'
-
     end
 
     post '/login' do   
@@ -26,8 +20,10 @@ class UserController < ApplicationController
         end
     end
 
-    get '/logout' do    
-        session.clear
+    get '/logout' do 
+        if Helpers.is_logged_in?(session)  
+            session.clear
+        end
         redirect to '/'
     end
 
