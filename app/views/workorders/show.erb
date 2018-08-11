@@ -1,0 +1,8 @@
+<h2><%= @workorder.store_number %></h2>
+<p>Submitted on: <%= @workorder.date %> By: <%= @workorder.user[:username] %></p> 
+<p>Issue: <%= @workorder.issue %>
+<br><br>
+
+<a href="/workorders/:id/edit">Edit Work Order</a><br>
+<a href="/workorders/:id/update">Update Work Order</a><br>
+<a href="/workorders">See All Workorders</a><br>

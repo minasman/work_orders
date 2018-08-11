@@ -1,1 +1,12 @@
-workorder.index
+<h1>Open Work Orders</h1>
+<% if @workorders.count > 0 %>
+    <% @workorders.each do |workorder| %>
+        <p><%= workorder.store_number %>: <a href="/workorders/<%= workorder.id %>">ID: <%= workorder.id %></a> Entered on: <%= workorder.date %> Issue: <%= workorder.issue %> Submitted By: <%= workorder.user[:username] %></p><br>
+    <% end %>
+<% else %>
+    <h2>There are no open workorders</h2>
+<% end %>
+
+<h1>Work Order Options</h1>
+<a href="/workorders/new">New Work Order</a><br>
+<a href="/stores">See All Stores</a>

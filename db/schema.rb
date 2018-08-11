@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180811003635) do
+ActiveRecord::Schema.define(version: 20180811023005) do
 
   create_table "stores", force: :cascade do |t|
     t.string "name"
@@ -27,10 +27,11 @@ ActiveRecord::Schema.define(version: 20180811003635) do
   end
 
   create_table "workorders", force: :cascade do |t|
-    t.string "store"
-    t.date   "date"
-    t.time   "time"
-    t.string "issue"
+    t.string  "store_number"
+    t.date    "date"
+    t.time    "time"
+    t.string  "issue"
+    t.integer "user_id"
   end
 
 end
