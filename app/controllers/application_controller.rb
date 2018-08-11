@@ -8,9 +8,7 @@ class ApplicationController < Sinatra::Base
     set :session_secret, "elreymcd"
   end
 
-  get '/' do   
-    binding.pry
-     
+  get '/' do        
     erb :index
   end
   
