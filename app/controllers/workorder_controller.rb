@@ -23,7 +23,6 @@ class WorkorderController < ApplicationController
             workorder.user_id = session[:user_id]
             workorder.status = "open"
             workorder.save
-            binding.pry
             redirect to '/workorders'
         else
             redirect to '/'
@@ -79,6 +78,10 @@ class WorkorderController < ApplicationController
             current_update.username = User.find_by_id(session[:user_id]).username
             current_update.save
             workorder.current_updates << current_update
+            if params[:status] = "closed" 
+                workorder.status = "closed"
+            end
+            workorder.save
             redirect to '/workorders'
         else 
             redirect to '/'
@@ -87,8 +90,18 @@ class WorkorderController < ApplicationController
 
     get '/workorders/:id/close' do   
         if Helpers.is_logged_in?(session) 
+            @workorder = Workorder.find_by_id(params[:id])
+            erb :'/workorders/close'
+        else
+            redirect to '/'
+        end
+    end
+
+    post '/workorders/:id/close' do   
+        if Helpers.is_logged_in?(session) 
             workorder = Workorder.find_by_id(params[:id])
             workorder.status = "closed"
+            workorder.closed_date = params[:closed_date]
             workorder.closed_notes = params[:closed_notes]
             workorder.closed_by = User.find_by_id(session[:user_id]).username 
             workorder.save

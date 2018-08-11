@@ -1,13 +1,26 @@
+require 'rack-flash'
 class UserController < ApplicationController
 
-    get '/signup' do   
+    get '/signup' do 
         erb :'/users/new'
     end
 
     post '/signup' do   
-        @user = User.create(params[:user])
-        session[:user_id] = @user.id 
-        redirect to '/workorders'
+        existing_username = User.find_by(username: params[:user][:username])
+        existing_email = User.find_by(email: params[:user][:email])
+        if !existing_user
+            if !existing_email 
+                @user = User.create(params[:user])
+                session[:user_id] = @user.id 
+                redirect to '/workorders'
+            else
+                flash[:message] = "User with #{params[:user][:email]} already exists"
+                redirect to '/signup'
+            end
+        else
+            flash[:message] = "Username already exists"
+            redirect to '/signup'
+        end
     end
 
     post '/login' do   

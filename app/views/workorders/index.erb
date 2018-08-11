@@ -1,12 +1,19 @@
 <h1>Open Work Orders</h1>
 <% if @workorders.count > 0 %>
+
     <% @workorders.each do |workorder| %>
-        <p><%= workorder.store_number %>: <a href="/workorders/<%= workorder.id %>">ID: <%= workorder.id %></a> Entered on: <%= workorder.date.strftime("%m/%d/%Y") %> Issue: <%= workorder.issue %> Submitted By: <%= workorder.user[:username] %></p>
-        <% if !workorder.current_updates.empty? %>
-            <h3>Updates:</h3>
-            <% workorder.current_updates.each do |info| %>
-             <p><%= info[:date].strftime("%m/%d/%Y") %> - <%= info[:time].strftime("%I:%M %p") %> Entered By: <%= info[:username] %> : Update => <%= info[:notes] %></p>
-            <br>
+
+        <%if workorder.status == "open" %>
+            <p><%= workorder.store_number %>: <a href="/workorders/<%= workorder.id %>">ID: <%= workorder.id %></a> Entered on: <%= workorder.date.strftime("%m/%d/%Y") %> Issue: <%= workorder.issue %> Submitted By: <%= workorder.user[:username] %></p>
+           
+            <% if !workorder.current_updates.empty? %>
+                <h3>Updates:</h3>
+                
+                <% workorder.current_updates.each do |info| %>
+                <p><%= info[:date].strftime("%m/%d/%Y") %> - <%= info[:time].strftime("%I:%M %p") %> Entered By: <%= info[:username] %> : Update => <%= info[:notes] %></p>
+                <br>
+                <% end %>
+
             <% end %>
         <% end %>
     <% end %>

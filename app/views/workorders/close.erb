@@ -1,0 +1,23 @@
+<h2>Close Work Order # <%= @workorder.id %> for Restaurant <%= @workorder.store_number %></h2>
+<p>Submitted on: <%= @workorder.date.strftime("%m/%d/%Y") %> By: <%= @workorder.user[:username] %> At: <%= @workorder.time.strftime("%I:%M %p") %></p> 
+<p>Issue: <%= @workorder.issue %>
+<br>
+<% if !@workorder.current_updates.empty? %>
+    <h3>Updates:</h3>
+    <% @workorder.current_updates.each do |info| %>
+        <p><%= info[:date].strftime("%m/%d/%Y") %> - <%= info[:time].strftime("%I:%M %p") %> Entered By: <%= info[:username] %> : Update => <%= info[:notes] %></p>
+        <br>
+    <% end %>
+<% end %>
+<br>
+<form method="post" action="/workorders/<%= @workorder.id %>/close">
+    <label>Date: </label>
+        <input type="date" name="closed_date"><br>
+    <label>Time: </label>
+        <input type="time" name="closed_time"><br>
+    <label>Update: </label><br>
+        <textarea name="current_update[notes]" rows="10" columns="100"></textarea><br>
+    <input type="submit" value="Update Work Order">
+</form>
+
+

@@ -12,11 +12,12 @@
 <br>
 <form method="post" action="/workorders/<%= @workorder.id %>">
     <label>Date: </label>
-        <input type="date" name="current_update[date]"><br>
+        <input type="date" name="current_update[date]" required><br>
     <label>Time: </label>
-        <input type="time" name="current_update[time]"><br>
+        <input type="time" name="current_update[time]" required><br>
     <label>Update: </label><br>
-        <textarea name="current_update[notes]" rows="10" columns="100"></textarea><br>
+        <textarea name="current_update[notes]" rows="10" columns="100" required></textarea><br>
+    <label>Close Work Order? </label><input type="checkbox" name="status" value="closed">
     <input type="submit" value="Update Work Order">
 </form>
 
