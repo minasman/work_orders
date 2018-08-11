@@ -1,6 +1,6 @@
 require 'rack-flash'
 class UserController < ApplicationController
-
+    use Rack::Flash
     get '/signup' do 
         erb :'/users/new'
     end
@@ -8,7 +8,7 @@ class UserController < ApplicationController
     post '/signup' do   
         existing_username = User.find_by(username: params[:user][:username])
         existing_email = User.find_by(email: params[:user][:email])
-        if !existing_user
+        if !existing_username
             if !existing_email 
                 @user = User.create(params[:user])
                 session[:user_id] = @user.id 

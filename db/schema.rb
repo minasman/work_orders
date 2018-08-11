@@ -14,8 +14,8 @@
 ActiveRecord::Schema.define(version: 20180811142855) do
 
   create_table "current_updates", force: :cascade do |t|
-    t.date    "date"
-    t.time    "time"
+    t.string  "date"
+    t.string  "time"
     t.string  "notes"
     t.string  "username"
     t.integer "workorder_id"
@@ -36,8 +36,8 @@ ActiveRecord::Schema.define(version: 20180811142855) do
 
   create_table "workorders", force: :cascade do |t|
     t.string  "store_number"
-    t.date    "date"
-    t.time    "time"
+    t.string  "date"
+    t.string  "time"
     t.string  "issue"
     t.integer "user_id"
     t.string  "status"

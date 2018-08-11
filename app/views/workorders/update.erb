@@ -1,20 +1,16 @@
 <h2>Update Work Order # <%= @workorder.id %> for Restaurant <%= @workorder.store_number %></h2>
-<p>Submitted on: <%= @workorder.date.strftime("%m/%d/%Y") %> By: <%= @workorder.user[:username] %> At: <%= @workorder.time.strftime("%I:%M %p") %></p> 
+<p>Submitted on: <%= @workorder.date %> By: <%= @workorder.user[:username] %> At: <%= @workorder.time %></p> 
 <p>Issue: <%= @workorder.issue %>
 <br>
 <% if !@workorder.current_updates.empty? %>
     <h3>Updates:</h3>
     <% @workorder.current_updates.each do |info| %>
-        <p><%= info[:date].strftime("%m/%d/%Y") %> - <%= info[:time].strftime("%I:%M %p") %> Entered By: <%= info[:username] %> : Update => <%= info[:notes] %></p>
+        <p><%= info[:date] %> - <%= info[:time] %> Entered By: <%= info[:username] %> : Update => <%= info[:notes] %></p>
         <br>
     <% end %>
 <% end %>
 <br>
 <form method="post" action="/workorders/<%= @workorder.id %>">
-    <label>Date: </label>
-        <input type="date" name="current_update[date]" required><br>
-    <label>Time: </label>
-        <input type="time" name="current_update[time]" required><br>
     <label>Update: </label><br>
         <textarea name="current_update[notes]" rows="10" columns="100" required></textarea><br>
     <label>Close Work Order? </label><input type="checkbox" name="status" value="closed">

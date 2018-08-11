@@ -4,18 +4,16 @@
     <% @workorders.each do |workorder| %>
 
         <%if workorder.status == "open" %>
-            <p><%= workorder.store_number %>: <a href="/workorders/<%= workorder.id %>">ID: <%= workorder.id %></a> Entered on: <%= workorder.date.strftime("%m/%d/%Y") %> Issue: <%= workorder.issue %> Submitted By: <%= workorder.user[:username] %></p>
+            <p><%= workorder.store_number %>: <a href="/workorders/<%= workorder.id %>">ID: <%= workorder.id %></a> Entered on: <%= workorder.date %> Issue: <%= workorder.issue %> Submitted By: <%= workorder.user[:username] %></p>
            
             <% if !workorder.current_updates.empty? %>
                 <h3>Updates:</h3>
-                
                 <% workorder.current_updates.each do |info| %>
-                <p><%= info[:date].strftime("%m/%d/%Y") %> - <%= info[:time].strftime("%I:%M %p") %> Entered By: <%= info[:username] %> : Update => <%= info[:notes] %></p>
-                <br>
+                <p><%= info[:date] %> - <%= info[:time] %> Updated By: <%= info[:username] %> : Update => <%= info[:notes] %></p>
                 <% end %>
-
             <% end %>
         <% end %>
+        <br>
     <% end %>
 <% else %>
     <h2>There are no open workorders</h2>

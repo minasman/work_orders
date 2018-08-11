@@ -1,3 +1,5 @@
+require 'date'
+require 'time'
 class WorkorderController < ApplicationController
 
     get '/workorders' do    
@@ -22,6 +24,8 @@ class WorkorderController < ApplicationController
             workorder = Workorder.create(params[:workorder])
             workorder.user_id = session[:user_id]
             workorder.status = "open"
+            workorder.date = Date.today.strftime("%m/%d/%Y")
+            workorder.time = Time.now.strftime("%I:%M%p")
             workorder.save
             redirect to '/workorders'
         else
@@ -70,15 +74,17 @@ class WorkorderController < ApplicationController
         end
     end
 
-    post '/workorders/:id' do    
+    post '/workorders/:id' do   
         if Helpers.is_logged_in?(session) 
             workorder = Workorder.find_by_id(params[:id])
             current_update = CurrentUpdate.create(params[:current_update])
             current_update.workorder_id = workorder.id
             current_update.username = User.find_by_id(session[:user_id]).username
+            current_update.date = Date.today.strftime("%m/%d/%Y")
+            current_update.time = Time.now.strftime("%I:%M%p")
             current_update.save
             workorder.current_updates << current_update
-            if params[:status] = "closed" 
+            if params[:status] == "closed" 
                 workorder.status = "closed"
             end
             workorder.save

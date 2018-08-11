@@ -6,7 +6,12 @@
   <body>
 
     <div class="container">
-      <h1>Work Order Manager</h1>
+      <h1>Work Order Manager</h1> 
+      <% if !session[:user_id] %>
+        <a href="/">Login</a>
+      <% else %>
+        <a href="/logout">Logout</a>
+      <% end %>
       <%=yield%>
     </div>
 
