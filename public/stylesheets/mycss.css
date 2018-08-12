@@ -1,0 +1,6 @@
+html {background-color: bisque}
+a {text-decoration: none; 
+    border: black solid 1px;
+    padding: 5px;
+    color: black}
+a:hover {background-color: white}

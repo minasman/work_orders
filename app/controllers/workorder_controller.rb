@@ -13,6 +13,7 @@ class WorkorderController < ApplicationController
 
     get '/workorders/new' do  
         if Helpers.is_logged_in?(session)  
+            @stores = Store.order(:store_number)
             erb :'/workorders/new'
         else 
             redirect to '/'

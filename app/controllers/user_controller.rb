@@ -12,7 +12,7 @@ class UserController < ApplicationController
             if !existing_email 
                 @user = User.create(params[:user])
                 session[:user_id] = @user.id 
-                redirect to '/workorders'
+                redirect to '/main'
             else
                 flash[:message] = "User with #{params[:user][:email]} already exists"
                 redirect to '/signup'
@@ -27,7 +27,7 @@ class UserController < ApplicationController
         user = User.find_by(username: params[:username])
         if user && user.authenticate(params[:password])
             session[:user_id] = user.id 
-            redirect to '/workorders'
+            redirect to '/main'
         else
             redirect to '/' 
         end

@@ -1,9 +1,13 @@
 <h1>Enter New Work Order:</h1>
 <form action="/workorders" method="post">
     <label>Restaurant Number: </label>
-        <input type="text" name='workorder[store_number]'required><br>
+        <select name='workorder[store_number]' required>
+            <% @stores.each do |s| %>
+                <option value='<%= s.store_number %>'><%= s.store_number %></option>
+            <% end %>
+        </select>
+        <br>
     <label>Issue: </label><br>
         <textarea name='workorder[issue]' rows="10" columns="100" required></textarea><br>
     <input type="submit" value="Enter Work Order">
 </form>
-

@@ -1,0 +1,9 @@
+<h2>Current list of Restaurants</h2>
+<% if !@stores.empty?%>
+    <% @stores.each do |s| %>
+        <p><a href='/stores/<%= s.id %>'><%= s.store_number %></a> - <%= s.name %> Email: <%= s.email %></p>
+    <% end %>
+<% end %>
+<br>
+<a href="/stores/new">Add Restaurant</a>
+<a href="/workorders">Work Orders</a>

@@ -1,0 +1,13 @@
+<h2>Edit Restaurant</h2>
+
+<form method="post" action="/stores/<%= @store.id %>">
+    <input id="hidden" type="hidden" name="_method" value="patch">
+    <label>Restaurant Number: </label>
+        <input type="text" name="store[store_number]" value="<%= @store.store_number %>" required><br>
+    <label>Restaurant Name: </label>
+        <input type="text" name="store[name]" value="<%= @store.name %>"required><br>
+    <label>Restaurant Email: </label>
+        <input type="text" name="store[email]" value="<%= @store.email %>"required><br>
+
+    <input type="submit" value="Submit">
+</form>
