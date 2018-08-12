@@ -29,6 +29,14 @@ class UserController < ApplicationController
         end
     end
 
+    get '/login' do    
+        if !Helpers.is_logged_in?(session)
+            erb :'users/login'
+        else
+            redirect to '/main'
+        end
+    end
+
     post '/login' do   
         user = User.find_by(username: params[:username])
         if user && user.authenticate(params[:password])

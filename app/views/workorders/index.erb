@@ -4,7 +4,7 @@
     <% @workorders.each do |workorder| %>
 
         <%if workorder.status == "open" %>
-            <p><%= workorder.store_number %>: <a href="/workorders/<%= workorder.id %>">ID: <%= workorder.id %></a> Entered on: <%= workorder.date %> Issue: <%= workorder.issue %> Submitted By: <%= workorder.user[:username] %></p>
+            <p><a href="/stores/<%= Store.find_by(store_number: workorder.store_number).id %>"><%= workorder.store_number %></a>: <a href="/workorders/<%= workorder.id %>">ID: <%= workorder.id %></a> Entered on: <%= workorder.date %> Issue: <%= workorder.issue %> Submitted By: <%= workorder.user[:username] %></p>
            
             <% if !workorder.current_updates.empty? %>
                 <h3>Updates:</h3>
