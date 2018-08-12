@@ -22,9 +22,9 @@ ActiveRecord::Schema.define(version: 20180811142855) do
   end
 
   create_table "stores", force: :cascade do |t|
-    t.string "name"
-    t.string "store_number"
-    t.string "email"
+    t.string  "name"
+    t.integer "store_number"
+    t.string  "email"
   end
 
   create_table "users", force: :cascade do |t|
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20180811142855) do
   end
 
   create_table "workorders", force: :cascade do |t|
-    t.string  "store_number"
+    t.integer "store_number"
     t.string  "date"
     t.string  "time"
     t.string  "issue"

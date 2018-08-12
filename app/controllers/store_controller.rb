@@ -19,7 +19,8 @@ class StoreController < ApplicationController
     end
 
     post '/stores' do 
-        if Helpers.is_logged_in?(session)   
+        if Helpers.is_logged_in?(session) 
+            params[:store][:store_number] = params[:store][:store_number].to_i
             store = Store.create(params[:store])
             store.save
             redirect to '/stores'

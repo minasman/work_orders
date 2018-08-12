@@ -1,7 +1,7 @@
 class CreateWorkorders < ActiveRecord::Migration
   def change
     create_table :workorders do |w|
-      w.string :store
+      w.integer :store
       w.string :date
       w.string :time
       w.string :issue
