@@ -1,2 +1,6 @@
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
+<br><br>
 <a href="/stores">Stores</a>
 <a href="/workorders">Work Orders</a>

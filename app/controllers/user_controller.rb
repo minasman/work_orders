@@ -1,8 +1,14 @@
 require 'rack-flash'
 class UserController < ApplicationController
     use Rack::Flash
+
     get '/signup' do 
-        erb :'/users/new'
+        if Helpers.is_logged_in?(session)
+            flash[:message] = "#{User.find_by_id(session[:user_id]).username} is Logged in"
+            redirect to '/main'
+        else
+            erb :'/users/new'
+        end
     end
 
     post '/signup' do   

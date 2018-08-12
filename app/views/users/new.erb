@@ -1,8 +1,6 @@
-<% if flash %>
 <% if flash.has?(:message) %>
   <%= flash[:message] %>
 <% end %>
-<%end%>
 
 <h1>Register as a New User below:</h1>
 <form method="post" action="/signup">
