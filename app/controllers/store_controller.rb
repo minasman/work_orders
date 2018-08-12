@@ -50,6 +50,7 @@ class StoreController < ApplicationController
 
     patch '/stores/:id' do   
         if Helpers.is_logged_in?(session)
+            params[:store][:store_number] = params[:store][:store_number].to_i
             store = Store.update(params[:id], params[:store])
             store.save
             redirect to '/stores'

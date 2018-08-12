@@ -11,7 +11,16 @@
 <label>Email:</label>
     <input type="text" name="user[email]" id="user_email" required><br>
 <label>Position:</label>
-    <input type="text" name="user[position]" id="user_position" required><br>
+    <select name="user[position]" id="user_position" required>
+        <option value="Director">Director</option>
+        <option value="Supervisor">Supervisor</option>
+        <option value="General Manager">General Manager</option>
+        <option value="Shift Manager">Shift Manager</option>
+        <option value="Field Tech">Field Tech</option>
+        <option value="Department Head">Department Head</option>
+        <option value="Admin">Admin</option>
+    </select>
+    <br>
 <label>Password:</label>
     <input type="password" name="user[password]" id="user_password" required><br>
 <input type="submit" value="Sign Up">
