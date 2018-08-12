@@ -4,14 +4,19 @@
     <% @workorders.each do |workorder| %>
 
         <%if workorder.status == "open" %>
-            <p><a href="/stores/<%= Store.find_by(store_number: workorder.store_number).id %>"><%= workorder.store_number %></a>: <a href="/workorders/<%= workorder.id %>">ID: <%= workorder.id %></a> Entered on: <%= workorder.date %> Issue: <%= workorder.issue %> Submitted By: <%= workorder.user[:username] %></p>
-           
-            <% if !workorder.current_updates.empty? %>
-                <h3>Updates:</h3>
-                <% workorder.current_updates.each do |info| %>
-                <p><%= info[:date] %> - <%= info[:time] %> Updated By: <%= info[:username] %> : Update => <%= info[:notes] %></p>
+            <div class="card" style="width: auto;">
+                <div class="card-body">
+                    <p class="card-title"><a href="/stores/<%= Store.find_by(store_number: workorder.store_number).id %>"><%= workorder.store_number %></a> - <a href="/workorders/<%= workorder.id %>">Work Order# <%= workorder.id %></a></p>
+                    <p class="card-text">Entered on: <%= workorder.date %>    Issue: <%= workorder.issue %>   Submitted By: <%= workorder.user[:username] %></p>
+                </div>
+                <% if !workorder.current_updates.empty? %>
+                    <ul class="list-group list-group-flush">
+                        <% workorder.current_updates.each do |info| %>
+                        <li class="list-group-item"><%= info[:date] %> - <%= info[:time] %> Updated By: <%= info[:username] %> Update => <%= info[:notes] %></li>
+                        <% end %>
+                    </ul>
                 <% end %>
-            <% end %>
+            </div>
         <% end %>
         <br>
     <% end %>
@@ -20,5 +25,5 @@
 <% end %>
 
 <h1>Work Order Options</h1>
-<a href="/workorders/new">New Work Order</a>
-<a href="/stores">Restaurants</a>
+<button type="button" class="btn btn-primary"><a style="color: white" href="/workorders/new">New Work Order</a></button>
+<button type="button" class="btn btn-primary"><a style="color: white" href="/stores">Restaurants</a></button>

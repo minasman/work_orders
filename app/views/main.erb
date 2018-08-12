@@ -1,6 +1,8 @@
-<% if flash.has?(:message) %>
-  <%= flash[:message] %>
-<% end %>
-<br><br>
-<a href="/stores">Stores</a>
-<a href="/workorders">Work Orders</a>
+    <% if flash.has?(:message) %>
+        <%= flash[:message] %>
+    <% end %>
+<div class="container">
+  <h1>Please select and option</h1>
+  <button type="button" class="btn btn-primary"><a style="color: white" href="/stores">Restaurants</a></button>
+  <button type="button" class="btn btn-primary"><a style="color: white" href="/workorders">Work Orders</a></button>
+<div>

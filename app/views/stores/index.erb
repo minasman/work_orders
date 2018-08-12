@@ -1,9 +1,17 @@
 <h2>Current list of Restaurants</h2>
-<% if !@stores.empty?%>
-    <% @stores.each do |s| %>
-        <p><a href='/stores/<%= s.id %>'><%= s.store_number %></a> - <%= s.name %> Email: <%= s.email %></p>
+<div class="container">
+    <% if !@stores.empty?%>
+        <% @stores.each do |s| %>
+            <div class="card" style="width: auto;">
+                <div class="card-body">
+                    <p class="card-title"><a href='/stores/<%= s.id %>'><%= s.store_number %></a></p>
+                    <p class="card-text"><%= s.name %> Email: <%= s.email %></p>
+                </div>
+            </div>
+        <% end %>
     <% end %>
-<% end %>
+</div>
 <br>
 <a href="/stores/new">Add Restaurant</a>
 <a href="/workorders">Work Orders</a>
+
