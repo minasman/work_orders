@@ -1,10 +1,14 @@
 <h1>Edit Work Order:</h1>
 <form action="/workorders/<%= @workorder.id %>" method="post">
     <input id="hidden" type="hidden" name="_method" value="patch">
-    <label>Restaurant Number: </label><input type="text" name=work_order[store_number] value="<%= @workorder.store_number %>" required><br>
-    <label>Date: </label><input type="date" name=work_order[date] value="<%= @workorder.date %>" disabled><br>
-    <label>Time: </label><input type="time" name=work_order[time] value="<%= @workorder.time %>" disabled><br>
-    <label>Issue: </label><textarea name=work_order[issue] rows="10" columns="100" required><%= @workorder.issue %></textarea><br>
-    <input type="submit" value="Submit Edit">
+    <div class="form-group">
+        <label>Restaurant Number: </label>
+            <input type="text" name=work_order[store_number] class="form-control" value="<%= @workorder.store_number %>" required>
+    </div>
+    <div class="form-group">
+        <label>Issue: </label>
+            <textarea name=work_order[issue] class="form-control" required><%= @workorder.issue %></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit Edit</button>
 </form>
 
