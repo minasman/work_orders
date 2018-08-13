@@ -1,12 +1,10 @@
 <h1>Open Work Orders</h1>
 <% if @workorders.count > 0 %>
-
     <% @workorders.each do |workorder| %>
-
         <%if workorder.status == "open" %>
             <div class="card" style="width: auto;">
                 <div class="card-body">
-                    <p class="card-title"><a href="/stores/<%= Store.find_by(store_number: workorder.store_number).id %>"><%= workorder.store_number %></a> - <a href="/workorders/<%= workorder.id %>">Work Order# <%= workorder.id %></a></p>
+                    <p class="card-title"><button type="button" class="btn btn-light"><a class="my-link" href="/stores/<%= Store.find_by(store_number: workorder.store_number).id %>"><%= workorder.store_number %></a></button> - <button type="button" class="btn btn-light"><a class="my-link" href="/workorders/<%= workorder.id %>">Work Order# <%= workorder.id %></a></button></p>
                     <p class="card-text">Entered on: <%= workorder.date %>    Issue: <%= workorder.issue %>   Submitted By: <%= workorder.user[:username] %></p>
                 </div>
                 <% if !workorder.current_updates.empty? %>
@@ -25,5 +23,5 @@
 <% end %>
 
 <h1>Work Order Options</h1>
-<button type="button" class="btn btn-primary"><a style="color: white" href="/workorders/new">New Work Order</a></button>
-<button type="button" class="btn btn-primary"><a style="color: white" href="/stores">Restaurants</a></button>
+<button type="button" class="btn btn-dark"><a href="/workorders/new">New Work Order</a></button>
+<button type="button" class="btn btn-dark"><a href="/stores">Restaurants</a></button>

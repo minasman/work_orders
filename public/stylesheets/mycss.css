@@ -1,0 +1,16 @@
+a {text-decoration: none;
+    color: white}
+
+a:hover {text-decoration: none}
+
+.my-link {color: black}
+
+.my-nav {position: fixed;
+    z-index: 1;
+    width: 100%;
+}
+
+.my-content {
+    position: absolute;
+    top: 10%;
+}

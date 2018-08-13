@@ -1,17 +1,17 @@
-<h2>Current list of Restaurants</h2>
+
 <div class="container">
+<h2>Current list of Restaurants</h2>
     <% if !@stores.empty?%>
         <% @stores.each do |s| %>
             <div class="card" style="width: auto;">
                 <div class="card-body">
-                    <p class="card-title"><a href='/stores/<%= s.id %>'><%= s.store_number %></a></p>
+                    <p class="card-title"><button type="button" class="btn btn-light"><a class="my-link" href='/stores/<%= s.id %>'><%= s.store_number %></a></button></p>
                     <p class="card-text"><%= s.name %> Email: <%= s.email %></p>
                 </div>
             </div>
         <% end %>
     <% end %>
+    <br>
+<button type="button" class="btn btn-dark"><a href="/stores/new">Add Restaurant</a></button>
+<button type="button" class="btn btn-dark"><a href="/workorders">Work Orders</a></button>
 </div>
-<br>
-<a href="/stores/new">Add Restaurant</a>
-<a href="/workorders">Work Orders</a>
-
