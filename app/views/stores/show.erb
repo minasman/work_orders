@@ -14,10 +14,10 @@
   <% end %>
 <% end %>
 
-<button type="button" class="btn btn-dark"><a href="/stores/<%= @store.id %>/edit">Edit Store</a></button>
-<button type="button" class="btn btn-dark"><a href="/stores">See All Stores</a></button><br><br>
+<button type="button" class="btn btn-dark"><a href="/stores/<%= @store.id %>/edit">Edit Restaurant</a></button>
+<button type="button" class="btn btn-dark"><a href="/stores">All Restaurants</a></button><br><br>
 
 <form action="/stores/<%= @store.id %>/delete" method="post">
   <input id="hidden" type="hidden" name="_method" value="delete">
-  <button type="submit" class="btn btn-danger">Delete Store</button>
+  <button type="submit" class="btn btn-danger">Delete Restaurant</button>
 </form>

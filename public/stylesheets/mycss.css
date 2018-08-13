@@ -15,3 +15,8 @@ a:hover {text-decoration: none}
     top: 10%;
     left: 15%;
 }
+
+.my-alert {
+    color: red;
+    font-style: italic;
+}

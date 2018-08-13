@@ -1,5 +1,4 @@
 <h2>Edit Restaurant</h2>
-
 <form method="post" action="/stores/<%= @store.id %>">
     <input id="hidden" type="hidden" name="_method" value="patch">
     <div class="form-group">
@@ -14,6 +13,5 @@
         <label>Restaurant Email: </label>
             <input type="text" class="form-control" name="store[email]" value="<%= @store.email %>"required>
     </div>
-
     <button type="submit" class="btn btn-dark">Submit Changes</button>
 </form>

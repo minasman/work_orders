@@ -1,4 +1,7 @@
+require 'rack-flash'
+
 class StoreController < ApplicationController
+    use Rack::Flash
 
     get '/stores' do 
         if Helpers.is_logged_in?(session) 
@@ -20,10 +23,28 @@ class StoreController < ApplicationController
 
     post '/stores' do 
         if Helpers.is_logged_in?(session) 
-            params[:store][:store_number] = params[:store][:store_number].to_i
-            store = Store.create(params[:store])
-            store.save
-            redirect to '/stores'
+            existing_store_number = Store.find_by(store_number: params[:store][:store_number])
+            existing_email = Store.find_by(email: params[:store][:email])
+            existing_store = Store.find_by(name: params[:store][:name])
+            if !existing_store_number
+                if !existing_email
+                    if !existing_store
+                        params[:store][:store_number] = params[:store][:store_number].to_i
+                        store = Store.create(params[:store])
+                        store.save
+                        redirect to '/stores'
+                    else
+                        flash[:message] = "#{params[:store][:name]} already exists"
+                        redirect to '/stores/new'
+                    end
+                else
+                    flash[:message] = "#{params[:store][:email]}  already exists"
+                    redirect to '/stores/new'
+                end
+            else
+                flash[:message] = "#{params[:store][:store_number]} already exists"
+                redirect to '/stores/new'
+            end
         else
             redirect to '/'
         end
