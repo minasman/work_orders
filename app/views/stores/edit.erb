@@ -2,12 +2,18 @@
 
 <form method="post" action="/stores/<%= @store.id %>">
     <input id="hidden" type="hidden" name="_method" value="patch">
-    <label>Restaurant Number: </label>
-        <input type="text" name="store[store_number]" value="<%= @store.store_number %>" required><br>
-    <label>Restaurant Name: </label>
-        <input type="text" name="store[name]" value="<%= @store.name %>"required><br>
-    <label>Restaurant Email: </label>
-        <input type="text" name="store[email]" value="<%= @store.email %>"required><br>
+    <div class="form-group">
+        <label>Restaurant Number: </label>
+            <input type="text" class="form-control" name="store[store_number]" value="<%= @store.store_number %>" required>
+    </div>
+    <div class="form-group">
+        <label>Restaurant Name: </label>
+            <input type="text" class="form-control" name="store[name]" value="<%= @store.name %>"required>
+    </div>
+    <div class="form-group">
+        <label>Restaurant Email: </label>
+            <input type="text" class="form-control" name="store[email]" value="<%= @store.email %>"required>
+    </div>
 
-    <input type="submit" value="Submit">
+    <button type="submit" class="btn btn-dark">Submit Changes</button>
 </form>
