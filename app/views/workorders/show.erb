@@ -1,4 +1,4 @@
-<h2>Restaurant: <%= @workorder.store_number %><br> Work Order#: <%= @workorder.id %></h2>
+<h3><button type="button" class="btn btn-light"><h2><a class="my-link" href="/stores/<%= Store.find_by(store_number: @workorder.store_number).id %>"><%= @workorder.store_number %></a></h2></button><br> Work Order#: <%= @workorder.id %></h3>
 <p>Submitted on: <%= @workorder.date %> By: <%= @workorder.user[:username] %> At: <%= @workorder.time %></p> 
 <p>Issue: <%= @workorder.issue %>
 <br>
@@ -10,6 +10,6 @@
 <% end %>
 <br>
 
-<a href="/workorders/<%= @workorder.id %>/edit">Edit Work Order</a>
-<a href="/workorders/<%= @workorder.id %>/update">Update Work Order</a>
-<a href="/workorders">See All Workorders</a><br>
+<button type="button" class="btn btn-dark"><a href="/workorders/<%= @workorder.id %>/edit">Edit Work Order</a></button>
+<button type="button" class="btn btn-dark"><a href="/workorders/<%= @workorder.id %>/update">Update Work Order</a></button>
+<button type="button" class="btn btn-dark"><a href="/workorders">See All Workorders</a></button>

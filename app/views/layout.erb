@@ -7,27 +7,27 @@
     <link href="<%= url('/stylesheets/mycss.css') %>" rel="stylesheet" type="text/css" />
   </head>
   <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark my-nav">
-  <a class="navbar-brand" href="/main">Work Order Manager</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <div class="navbar-nav">
-      <a class="nav-item nav-link active" href="/main">Home <span class="sr-only">(current)</span></a>
-      <% if !session[:user_id] %>
-        <a class="nav-item nav-link" href="/login">Login</a>
-        <a class="nav-item nav-link" href="/signup">Sign Up</a>
-      <% else %>
-        <a class="nav-item nav-link" href="/logout">Logout</a>
-      <% end %>
-    </div>
-  </div>
-</nav>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark my-nav">
+      <a class="navbar-brand" href="/main">Work Order Manager</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link active" href="/main">Home <span class="sr-only">(current)</span></a>
+          <% if !session[:user_id] %>
+            <a class="nav-item nav-link" href="/login">Login</a>
+            <a class="nav-item nav-link" href="/signup">Sign Up</a>
+          <% else %>
+            <a class="nav-item nav-link" href="/logout">Logout</a>
+          <% end %>
+        </div>
+      </div>
+    </nav>
 
-  <div class="container my-content">
-    <%=yield%>
-  </div>
+    <div class="container my-content">
+      <%=yield%>
+    </div>
 
   </body>
 </html>

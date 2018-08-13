@@ -13,4 +13,5 @@ a:hover {text-decoration: none}
 .my-content {
     position: absolute;
     top: 10%;
+    left: 15%;
 }
