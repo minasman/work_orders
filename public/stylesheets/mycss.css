@@ -5,9 +5,8 @@ a:hover {text-decoration: none}
 
 .my-link {color: black}
 
-.my-nav {position: fixed;
-    z-index: 1;
-    width: 100%;
+body {
+    padding: 10%;
 }
 
 .my-content {
