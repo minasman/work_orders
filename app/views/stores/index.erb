@@ -7,6 +7,17 @@
                 <div class="card-body">
                     <p class="card-title"><button type="button" class="btn btn-light"><a class="my-link" href='/stores/<%= s.id %>'><%= s.store_number %></a></button></p>
                     <p class="card-text"><%= s.name %> Email: <%= s.email %></p>
+                    <p class="card-text">
+                        <% open, closed = 0, 0 %>
+                        <% s.workorders.each do |w| %>
+                            <% if w.status == "open" %>
+                                <% open += 1 %>
+                            <% else %>
+                                <% closed += 1 %>
+                            <% end %>
+                        <% end %>
+                        Work Orders - Open: <%= open %>   Closed: <%= closed %>
+                    </p>
                 </div>
             </div>
         <% end %>

@@ -34,6 +34,7 @@ class WorkorderController < ApplicationController
         if Helpers.is_logged_in?(session)  
             workorder = Workorder.create(params[:workorder])
             workorder.user_id = session[:user_id]
+            workorder.store_id = Store.find_by(store_number: params[:workorder][:store_number]).id
             workorder.status = "open"
             workorder.date = Date.today.strftime("%m/%d/%Y")
             workorder.time = Time.now.strftime("%I:%M%p")

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180811142855) do
+ActiveRecord::Schema.define(version: 20180813211948) do
 
   create_table "current_updates", force: :cascade do |t|
     t.string  "date"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 20180811142855) do
     t.string  "status"
     t.string  "closed_by"
     t.string  "closed_notes"
+    t.integer "store_id"
   end
 
 end
