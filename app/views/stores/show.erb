@@ -3,7 +3,8 @@
 <% if @workorders %>
   <% @workorders.each do |workorder| %>
     <% if workorder.store_number == @store.store_number %>
-      <p>Work Order #: <button type="button" class="btn btn-light"><a class="my-link" href="/workorders/<%= workorder.id %>"><%= workorder.id %></a></button> - Entered On: <%= workorder.date %> By: <%= workorder.user[:username] %></p>
+      <p>Work Order #: <button type="button" class="btn btn-light"><a class="my-link" href="/workorders/<%= workorder.id %>"><%= workorder.id %></a></button> - Entered On: <%= workorder.date %> By: <%= workorder.user[:username] %>
+      <b>STATUS is <%= workorder.status.upcase %></b></p>
       <% if !workorder.current_updates.empty? %>
         <h3>Updates:</h3>
           <% workorder.current_updates.each do |info| %>

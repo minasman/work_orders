@@ -20,6 +20,16 @@ class WorkorderController < ApplicationController
         end
     end
 
+    get '/workorders/closed' do  
+        if Helpers.is_logged_in?(session)  
+            @workorders = Workorder.order(:store_number) 
+            @status = "closed"
+            erb :'/workorders/index'
+        else
+            redirect to '/'
+        end
+    end
+
     post '/workorders' do 
         if Helpers.is_logged_in?(session)  
             workorder = Workorder.create(params[:workorder])

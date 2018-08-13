@@ -1,27 +1,59 @@
-<h1>Open Work Orders</h1>
-<% if @workorders.count > 0 %>
-    <% @workorders.each do |workorder| %>
-        <%if workorder.status == "open" %>
-            <div class="card" style="width: auto;">
-                <div class="card-body">
-                    <p class="card-title"><button type="button" class="btn btn-light"><a class="my-link" href="/stores/<%= Store.find_by(store_number: workorder.store_number).id %>"><%= workorder.store_number %></a></button> - <button type="button" class="btn btn-light"><a class="my-link" href="/workorders/<%= workorder.id %>">Work Order# <%= workorder.id %></a></button></p>
-                    <p class="card-text">Entered on: <%= workorder.date %>    Issue: <%= workorder.issue %>   Submitted By: <%= workorder.user[:username] %></p>
+<% if !@status %>
+    <% if @workorders.count > 0 %>
+        <h1>Open Work Orders</h1>
+        <% @workorders.each do |workorder| %>
+            <%if workorder.status == "open" %>
+                <div class="card" style="width: auto;">
+                    <div class="card-body">
+                        <p class="card-title"><button type="button" class="btn btn-light"><a class="my-link" href="/stores/<%= Store.find_by(store_number: workorder.store_number).id %>"><%= workorder.store_number %></a></button> - <button type="button" class="btn btn-light"><a class="my-link" href="/workorders/<%= workorder.id %>">Work Order# <%= workorder.id %></a></button></p>
+                        <p class="card-text">Entered on: <%= workorder.date %>    Issue: <%= workorder.issue %>   Submitted By: <%= workorder.user[:username] %></p>
+                    </div>
+                    <% if !workorder.current_updates.empty? %>
+                        <ul class="list-group list-group-flush">
+                            <% workorder.current_updates.each do |info| %>
+                                <li class="list-group-item"><%= info[:date] %> - <%= info[:time] %> Updated By: <%= info[:username] %> Update => <%= info[:notes] %></li>
+                            <% end %>
+                        </ul>
+                    <% end %>
                 </div>
-                <% if !workorder.current_updates.empty? %>
-                    <ul class="list-group list-group-flush">
-                        <% workorder.current_updates.each do |info| %>
-                        <li class="list-group-item"><%= info[:date] %> - <%= info[:time] %> Updated By: <%= info[:username] %> Update => <%= info[:notes] %></li>
-                        <% end %>
-                    </ul>
-                <% end %>
-            </div>
+            <% end %>
+            <br>
         <% end %>
-        <br>
+    <% else %>
+        <h2>There are no open workorders</h2>
     <% end %>
 <% else %>
-    <h2>There are no open workorders</h2>
+    <% if @workorders.count > 0 %>
+        <h1>Closed Work Orders</h1>
+        <% @workorders.each do |workorder| %>
+            <%if workorder.status == "closed" %>
+                <div class="card" style="width: auto;">
+                    <div class="card-body">
+                        <p class="card-title"><button type="button" class="btn btn-light"><a class="my-link" href="/stores/<%= Store.find_by(store_number: workorder.store_number).id %>"><%= workorder.store_number %></a></button> - <button type="button" class="btn btn-light"><a class="my-link" href="/workorders/<%= workorder.id %>">Work Order# <%= workorder.id %></a></button></p>
+                        <p class="card-text">Entered on: <%= workorder.date %>    Issue: <%= workorder.issue %>   Submitted By: <%= workorder.user[:username] %></p>
+                    </div>
+                    <% if !workorder.current_updates.empty? %>
+                        <ul class="list-group list-group-flush">
+                            <% workorder.current_updates.each do |info| %>
+                                <li class="list-group-item"><%= info[:date] %> - <%= info[:time] %> Updated By: <%= info[:username] %> Update => <%= info[:notes] %></li>
+                            <% end %>
+                        </ul>
+                    <% end %>
+                </div>
+            <% end %>
+            <br>
+        <% end %>
+    <% else %>
+        <h2>There are no closed workorders</h2>
+    <% end %>
 <% end %>
 
-<h1>Work Order Options</h1>
+
+<h2>Work Order Options</h2>
 <button type="button" class="btn btn-dark"><a href="/workorders/new">New Work Order</a></button>
+<% if @status %>
+    <button type="button" class="btn btn-dark"><a href="/workorders">Open Work Orders</a></button>
+<% else %>
+    <button type="button" class="btn btn-dark"><a href="/workorders/closed">Closed Work Orders</a></button>
+<% end %>
 <button type="button" class="btn btn-dark"><a href="/stores">Restaurants</a></button>
