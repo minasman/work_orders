@@ -5,7 +5,7 @@
 <% if !@workorder.current_updates.empty? %>
     <h3>Updates:</h3>
     <% @workorder.current_updates.each do |info| %>
-        <p><%= info[:date] %> - <%= info[:time] %> Entered By: <%= info[:username] %> : Update => <%= info[:notes] %></p>
+        <p><%= info[:date] %> at <%= info[:time] %> Updated By: <%= info[:username] %> Update => <%= info[:notes] %></p>
     <% end %>
 <% end %>
 <br>
