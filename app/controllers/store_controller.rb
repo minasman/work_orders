@@ -72,12 +72,11 @@ class StoreController < ApplicationController
     patch '/stores/:id' do   
         if Helpers.is_logged_in?(session)
             store = Store.find_by_id(params[:id])
-
-            if Store.find_by_id(params[:id]).store_number == params[:store][:store_number].to_i
+            if Store.find_by_id(params[:id]).store_number != params[:store][:store_number].to_i
                 if Store.find_by(store_number: params[:store][:store_number])
                     flash[:message] = "#{params[:store][:store_number]} already exists"
                     @store = Store.find_by_id(params[:id])
-                    erb :'/stores/edit'
+                    redirect to "/stores/#{params[:id]}/edit"
                 else
                     params[:store][:store_number] = params[:store][:store_number].to_i
                     store.store_number = params[:store][:store_number]
@@ -88,7 +87,7 @@ class StoreController < ApplicationController
                 if Store.find_by(name: params[:store][:name])
                     flash[:message] = "#{params[:store][:name]} already exists"
                     @store = Store.find_by_id(params[:id])
-                    erb :'/stores/edit'
+                    redirect to "/stores/#{params[:id]}/edit"
                 else
                     store.name = params[:store][:name]
                 end
@@ -98,7 +97,7 @@ class StoreController < ApplicationController
                 if Store.find_by(email: params[:store][:email])
                     flash[:message] = "#{params[:store][:email]} already exists"
                     @store = Store.find_by_id(params[:id])
-                    erb :'/stores/edit'
+                    redirect to "/stores/#{params[:id]}/edit"
                 else
                     store.email = params[:store][:email]
                 end
