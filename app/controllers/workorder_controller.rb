@@ -69,9 +69,13 @@ class WorkorderController < ApplicationController
 
     patch '/workorders/:id' do   
         if Helpers.is_logged_in?(session) 
-            workorder = Workorder.update(params[:id], params[:work_order])
-            workorder.save
-            redirect to '/workorders'
+            if session[:user_id] == Workorder.find_by_id(params[:id]).user_id
+                workorder = Workorder.update(params[:id], params[:work_order])
+                workorder.save
+                redirect to '/workorders'
+            else
+                redirect '/main'
+            end
         else
             redirect to '/'
         end
